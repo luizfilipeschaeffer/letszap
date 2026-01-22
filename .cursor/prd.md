@@ -85,14 +85,14 @@ Texto explicativo destacando:
 
 ### 7. **Seção Planos e Preços**
 Tabela comparativa com 4 planos:
-1. **Individual** – R$38,80/mês  
+1. **Individual** – R$149,90/mês  
    - 1 usuário, 1 número, funcionalidades básicas.
-2. **Básico** – R$77,80/mês  
-   - 3 usuários, 2 números, acesso a relatórios e chatbot.
-3. **Avançado** – R$129,80/mês  
-   - 5 usuários, automação completa e integrações.
-4. **Empresarial** – R$233,80/mês  
-   - 10+ usuários, suporte prioritário, API customizada.
+2. **Básico** – R$179,90/mês  
+   - 3 usuários, 199,90 números, acesso a relatórios e muito mais.
+3. **Avançado** – R$289,90/mês  
+   - 5 usuários, automação completa.
+4. **Empresarial** – Entrar em Contato  
+   - 10+ usuários, suporte prioritário, API.
 
 Botões:
 - “Assinar agora”

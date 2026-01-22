@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   description: "A ponte direta entre sua marca e seu cliente. Conecte todos os canais, utilize IA para tornar seu atendimento mais rápido e melhore a produtividade do seu time usando uma única plataforma.",
   keywords: "atendimento ao cliente, WhatsApp Business, chatbot, IA, omnichannel, LetsZap",
   authors: [{ name: "LetsZap" }],
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   openGraph: {
     title: "LetsZap - O atendimento humano que a sua empresa merece",
     description: "A ponte direta entre sua marca e seu cliente. Conecte todos os canais, utilize IA para tornar seu atendimento mais rápido.",

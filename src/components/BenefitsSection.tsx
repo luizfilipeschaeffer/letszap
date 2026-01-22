@@ -116,10 +116,16 @@ const BenefitsSection: React.FC = () => {
               Junte-se a milhares de empresas que já confiam em nossa plataforma
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <button 
+                className="bg-white text-green-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Começar agora!
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-secondary transition-colors">
+              <button 
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-secondary transition-colors"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Testar gratuitamente
               </button>
             </div>

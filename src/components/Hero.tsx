@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-light to-white py-8 sm:py-12 lg:py-0">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-light to-white py-8 sm:py-12 lg:py-0">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-32 h-32 bg-green-primary rounded-full blur-3xl"></div>
@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
             className="text-center lg:text-left"
           >
             <ClientOnly fallback={
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-normal break-words hyphens-auto mb-6">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-normal break-words hyphens-auto mb-6">
                 {heroTexts[0]}
               </h1>
             }>
@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="mb-6"
               >
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-normal break-words hyphens-auto">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-normal break-words hyphens-auto">
                   {heroTexts[currentText]}
                 </h1>
               </motion.div>
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 max-w-2xl"
+              className="text-sm sm:text-base md:text-lg text-gray-600 mb-8 max-w-2xl"
             >
               Centralize e melhore o desempenho do seu atendimento com nossa plataforma completa de gestão multicanal.
             </motion.p>
@@ -76,11 +76,20 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Button size="lg" className="group">
+              <Button 
+                size="lg" 
+                className="group"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Começar agora!
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg" className="group">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="group"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
                 Testar gratuitamente
               </Button>

@@ -67,10 +67,7 @@ const GuaranteeSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Shield className="w-4 h-4 mr-2" />
-            Garantia de Satisfação
-          </div>
+
           
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Garantia "Risco Zero"
@@ -185,47 +182,6 @@ const GuaranteeSection: React.FC = () => {
           </Card>
         </motion.div>
 
-        {/* Testimonials */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            O que nossos clientes dizem sobre a garantia
-          </h3>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card hover className="h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 mb-4 italic">
-                      "{testimonial.text}"
-                    </p>
-                    <div className="text-sm">
-                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-gray-600">{testimonial.company}</div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* CTA Section */}
         <motion.div
@@ -243,11 +199,20 @@ const GuaranteeSection: React.FC = () => {
               Teste nossa plataforma por 7 dias com garantia total de satisfação
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-green-secondary hover:bg-gray-100">
+              <Button 
+                size="lg" 
+                className="bg-white text-green-secondary hover:bg-gray-100"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Comece agora!
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green-secondary">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white text-white hover:bg-white hover:text-green-secondary"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Testar gratuitamente
               </Button>
             </div>

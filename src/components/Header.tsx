@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { cn } from '@/lib/utils';
@@ -20,6 +21,41 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Função para scroll suave
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        const headerHeight = 80; // Altura do header
+        const targetPosition = targetElement.offsetTop - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      window.location.href = href;
+    }
+    
+    // Fechar menu mobile após clicar
+    setIsMenuOpen(false);
+  };
+
+  // Handlers para botões
+  const handleLogin = () => {
+    window.open('https://portal.letszap.com.br/', '_blank');
+  };
+
+  const handleTestFree = () => {
+    window.open('https://portal.letszap.com.br/signup', '_blank');
+    setIsMenuOpen(false);
+  };
+
   const menuItems = [
     {
       label: 'Início',
@@ -27,17 +63,7 @@ const Header: React.FC = () => {
     },
     {
       label: 'Funcionalidades',
-      href: '#features',
-      dropdown: [
-        { label: 'Multiatendimento', href: '#multiatendimento' },
-        { label: 'Envio em Massa', href: '#envio-massa' },
-        { label: 'Chatbot', href: '#chatbot' },
-        { label: 'Agendamento', href: '#agendamento' },
-        { label: 'Integração API', href: '#integracao-api' },
-        { label: 'Etiquetas', href: '#etiquetas' },
-        { label: 'CRM Integrado', href: '#crm' },
-        { label: 'Relatórios', href: '#relatorios' }
-      ]
+      href: '#features'
     },
     {
       label: 'Planos',
@@ -45,10 +71,10 @@ const Header: React.FC = () => {
     },
     {
       label: 'Ajuda',
-      href: '#help',
+      href: '#faq',
       dropdown: [
-        { label: 'Central de Ajuda', href: '#help' },
-        { label: 'Tutorial Completo', href: '#tutorial' },
+        { label: 'Central de Ajuda', href: '#faq' },
+        { label: 'Tutorial Completo', href: '#faq' },
         { label: 'FAQ', href: '#faq' },
         { label: 'Contato', href: '#contact' }
       ]
@@ -78,9 +104,20 @@ const Header: React.FC = () => {
         <nav className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2">
+            <a 
+              href="#home" 
+              onClick={(e) => handleSmoothScroll(e, '#home')}
+              className="flex items-center space-x-2 cursor-pointer"
+            >
+              <Image
+                src="/logo.png"
+                alt="LetsZap Logo"
+                width={40}
+                height={40}
+                className="h-8 w-8 lg:h-10 lg:w-10"
+                priority
+              />
               <span className="text-xl font-bold text-green-secondary">LetsZap</span>
-              <span className="text-lg">❤️</span>
             </a>
           </div>
 
@@ -95,7 +132,8 @@ const Header: React.FC = () => {
               >
                 <a
                   href={item.href}
-                  className="flex items-center space-x-1 text-gray-700 hover:text-green-secondary transition-colors duration-200"
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className="flex items-center space-x-1 text-gray-700 hover:text-green-secondary transition-colors duration-200 cursor-pointer"
                 >
                   <span>{item.label}</span>
                   {item.dropdown && <ChevronDown className="w-4 h-4" />}
@@ -115,7 +153,8 @@ const Header: React.FC = () => {
                         <a
                           key={dropdownItem.label}
                           href={dropdownItem.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-accent hover:text-green-dark transition-colors duration-200"
+                          onClick={(e) => handleSmoothScroll(e, dropdownItem.href)}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-accent hover:text-green-dark transition-colors duration-200 cursor-pointer"
                         >
                           {dropdownItem.label}
                         </a>
@@ -129,10 +168,10 @@ const Header: React.FC = () => {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={handleLogin}>
               Login
             </Button>
-            <Button variant="primary" size="sm">
+            <Button variant="primary" size="sm" onClick={handleTestFree}>
               Testar gratuitamente
             </Button>
           </div>
@@ -158,7 +197,8 @@ const Header: React.FC = () => {
               <div key={item.label}>
                 <a
                   href={item.href}
-                  className="block text-gray-700 hover:text-green-secondary transition-colors duration-200"
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className="block text-gray-700 hover:text-green-secondary transition-colors duration-200 cursor-pointer"
                 >
                   {item.label}
                 </a>
@@ -169,7 +209,8 @@ const Header: React.FC = () => {
                       <a
                         key={dropdownItem.label}
                         href={dropdownItem.href}
-                        className="block text-sm text-gray-600 hover:text-green-secondary transition-colors duration-200"
+                        onClick={(e) => handleSmoothScroll(e, dropdownItem.href)}
+                        className="block text-sm text-gray-600 hover:text-green-secondary transition-colors duration-200 cursor-pointer"
                       >
                         {dropdownItem.label}
                       </a>
@@ -180,10 +221,10 @@ const Header: React.FC = () => {
             ))}
             
             <div className="pt-4 border-t border-gray-100 space-y-2">
-              <Button variant="ghost" size="sm" className="w-full">
+              <Button variant="ghost" size="sm" className="w-full" onClick={handleLogin}>
                 Login
               </Button>
-              <Button variant="primary" size="sm" className="w-full">
+              <Button variant="primary" size="sm" className="w-full" onClick={handleTestFree}>
                 Testar gratuitamente
               </Button>
             </div>

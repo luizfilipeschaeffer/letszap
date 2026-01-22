@@ -96,7 +96,7 @@ const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section id="features" className="py-20 bg-white">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -158,10 +158,16 @@ const FeaturesSection: React.FC = () => {
               Experimente todas essas funcionalidades gratuitamente por 7 dias
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <button 
+                className="bg-white text-green-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Começar agora!
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-secondary transition-colors">
+              <button 
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-secondary transition-colors"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Testar gratuitamente
               </button>
             </div>

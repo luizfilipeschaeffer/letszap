@@ -21,8 +21,6 @@ export default function Home() {
         <FeaturesSection />
         <WhyChooseSection />
         <PricingSection />
-        <AboutSection />
-        <FAQSection />
         <GuaranteeSection />
       </main>
       <Footer />

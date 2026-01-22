@@ -179,7 +179,12 @@ const AboutSection: React.FC = () => {
                 Fale com um consultor
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green-secondary">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white text-white hover:bg-white hover:text-green-secondary"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Testar gratuitamente
               </Button>
             </div>

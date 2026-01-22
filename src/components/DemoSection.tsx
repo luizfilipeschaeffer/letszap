@@ -101,7 +101,11 @@ const DemoSection: React.FC = () => {
                       <p className="text-3xl font-bold text-green-secondary">3 min</p>
                     </div>
                     
-                    <Button size="lg" className="w-full group">
+                    <Button 
+                      size="lg" 
+                      className="w-full group"
+                      onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+                    >
                       Comece agora grátis
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Button>

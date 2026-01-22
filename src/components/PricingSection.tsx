@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Check, Star, ArrowRight } from 'lucide-react';
+import { Check, Star, ArrowRight, Gift, Users } from 'lucide-react';
 
 const PricingSection: React.FC = () => {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -18,61 +18,48 @@ const PricingSection: React.FC = () => {
   const plans = [
     {
       name: 'Individual',
-      price: { monthly: 38.80, annual: 388.00 },
+      price: { monthly: 149.90, annual: 1439.00 },
       description: 'Perfeito para profissionais autônomos',
       features: [
         '1 usuário',
         '1 número WhatsApp',
-        'Funcionalidades básicas',
-        'Suporte por email',
-        'Relatórios básicos'
+        'Funcionalidades básicas'
       ],
       popular: false,
       color: 'from-gray-100 to-gray-200'
     },
     {
       name: 'Básico',
-      price: { monthly: 77.80, annual: 778.00 },
+      price: { monthly: 199.90, annual: 2199.90 },
       description: 'Ideal para pequenas empresas',
       features: [
         '3 usuários',
         '2 números WhatsApp',
         'Acesso a relatórios',
-        'Chatbot básico',
-        'Suporte prioritário',
-        'Integração com CRM'
+        'E muito mais'
       ],
       popular: false,
       color: 'from-green-100 to-green-200'
     },
     {
       name: 'Avançado',
-      price: { monthly: 129.80, annual: 1298.00 },
+      price: { monthly: 289.90, annual: 2783.00 },
       description: 'Para empresas em crescimento',
       features: [
         '5 usuários',
-        'Automação completa',
-        'Integrações avançadas',
-        'API personalizada',
-        'Suporte 24/7',
-        'Relatórios avançados',
-        'Chatbot inteligente'
+        'Automação completa'
       ],
       popular: true,
       color: 'from-green-secondary to-green-dark'
     },
     {
       name: 'Empresarial',
-      price: { monthly: 233.80, annual: 2338.00 },
+      price: null,
       description: 'Solução completa para grandes empresas',
       features: [
         '10+ usuários',
         'Suporte prioritário',
-        'API customizada',
-        'Treinamento dedicado',
-        'Consultoria estratégica',
-        'SLA garantido',
-        'Integração personalizada'
+        'API customizada'
       ],
       popular: false,
       color: 'from-green-dark to-green-secondary'
@@ -80,7 +67,7 @@ const PricingSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section id="pricing" className="py-20 bg-white">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -153,16 +140,24 @@ const PricingSection: React.FC = () => {
                       {plan.description}
                     </p>
                     <div className="mb-4">
-                      <span className="text-4xl font-bold text-gray-900">
-                        R$ {isAnnual ? plan.price.annual : plan.price.monthly}
-                      </span>
-                      <span className="text-gray-600">
-                        /{isAnnual ? 'ano' : 'mês'}
-                      </span>
+                      {plan.price ? (
+                        <>
+                          <span className="text-4xl font-bold text-gray-900">
+                            R$ {isAnnual ? plan.price.annual.toFixed(2) : plan.price.monthly.toFixed(2)}
+                          </span>
+                          <span className="text-gray-600">
+                            /{isAnnual ? 'ano' : 'mês'}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="text-2xl font-bold text-gray-900">
+                          Entrar em Contato
+                        </span>
+                      )}
                     </div>
-                    {isAnnual && (
+                    {isAnnual && plan.price && (
                       <p className="text-sm text-green-600 font-medium">
-                        Economize R$ {(plan.price.monthly * 12) - plan.price.annual}/ano
+                        Economize R$ {((plan.price.monthly * 12) - plan.price.annual).toFixed(2)}/ano
                       </p>
                     )}
                   </div>
@@ -187,7 +182,11 @@ const PricingSection: React.FC = () => {
                       {plan.name === 'Empresarial' ? 'Falar com consultor' : 'Assinar agora'}
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
-                    <Button variant="outline" className="w-full">
+                    <Button 
+                      variant="outline" 
+                      className="w-full"
+                      onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+                    >
                       Testar gratuitamente
                     </Button>
                   </div>
@@ -196,6 +195,55 @@ const PricingSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Seção de Desconto por Indicação */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 md:p-12 border-2 border-green-200">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0">
+                <div className="bg-green-secondary rounded-full p-6 w-20 h-20 flex items-center justify-center">
+                  <Gift className="w-10 h-10 text-white" />
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 flex items-center justify-center md:justify-start gap-2">
+                  <Users className="w-6 h-6 text-green-secondary" />
+                  Programa de Indicação
+                </h3>
+                <p className="text-lg text-gray-700 mb-4">
+                  Indique um amigo ou empresa e ganhe desconto especial!
+                </p>
+                <div className="bg-white rounded-lg p-4 mb-4 border-l-4 border-green-secondary">
+                  <p className="text-sm text-gray-600 font-medium">
+                    <span className="text-green-secondary font-bold">Importante:</span> O desconto será aplicado apenas quando o contato indicado se tornar um cliente assinante.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                  <Button 
+                    size="lg" 
+                    className="bg-green-secondary hover:bg-green-dark text-white"
+                  >
+                    Indicar alguém
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="border-green-secondary text-green-secondary hover:bg-green-secondary hover:text-white"
+                  >
+                    Saiba mais
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* CTA Section */}
         <motion.div
@@ -217,7 +265,12 @@ const PricingSection: React.FC = () => {
                 Falar com consultor
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green-secondary">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white text-white hover:bg-white hover:text-green-secondary"
+                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
+              >
                 Testar gratuitamente
               </Button>
             </div>

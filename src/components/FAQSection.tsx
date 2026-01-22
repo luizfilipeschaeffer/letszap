@@ -50,7 +50,7 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section id="faq" className="py-20 bg-white">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

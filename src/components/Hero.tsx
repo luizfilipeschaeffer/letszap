@@ -19,7 +19,7 @@ const Hero = () => {
 
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6 max-w-4xl mx-auto leading-[1.1]">
           Toda sua equipe em um <br />
-          <span className="text-[#2ECC71] inline-block">único Número.</span>
+          <span className="text-[#2ECC71] inline-block">único WhatsApp.</span>
         </h1>
         
         <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-500 font-normal leading-relaxed">

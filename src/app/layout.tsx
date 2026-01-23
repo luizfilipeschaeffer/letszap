@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -79,6 +80,19 @@ export default function RootLayout({
         className={`${inter.variable} antialiased text-gray-800 bg-white relative`}
         suppressHydrationWarning={true}
       >
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-DQX13EYG4L"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-DQX13EYG4L');
+          `}
+        </Script>
         <script 
           src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
           async

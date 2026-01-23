@@ -10,6 +10,7 @@ import { Check, Star, ArrowRight, Gift, Users } from 'lucide-react';
 const PricingSection: React.FC = () => {
   const [isAnnual, setIsAnnual] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const whatsappNumber = '5548996846044';
 
   React.useEffect(() => {
     setIsClient(true);
@@ -65,6 +66,39 @@ const PricingSection: React.FC = () => {
       color: 'from-green-dark to-green-secondary'
     }
   ];
+
+  const handleAssinarAgora = (plan: {
+    name: string;
+    price: { monthly: number; annual: number } | null;
+    description: string;
+    features: string[];
+    popular: boolean;
+    color: string;
+  }) => {
+    const periodo = isAnnual ? 'ano' : 'mês';
+    const preco = plan.price 
+      ? `R$ ${isAnnual ? plan.price.annual.toFixed(2) : plan.price.monthly.toFixed(2)}/${periodo}`
+      : 'Sob consulta';
+    
+    const featuresText = plan.features.map(feature => `✓ ${feature}`).join('\n');
+    
+    const mensagem = `Olá! Gostaria de assinar o plano *${plan.name}*.
+
+*Detalhes do Plano:*
+${plan.description}
+
+*Preço:* ${preco}
+
+*Funcionalidades:*
+${featuresText}
+
+Por favor, entre em contato para finalizar a assinatura.`;
+
+    const mensagemEncoded = encodeURIComponent(mensagem);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${mensagemEncoded}`;
+    
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <section id="pricing" className="py-20 bg-white">
@@ -178,6 +212,23 @@ const PricingSection: React.FC = () => {
                           ? 'bg-green-secondary hover:bg-green-dark' 
                           : 'bg-gray-900 hover:bg-gray-800'
                       }`}
+                      onClick={() => {
+                        if (plan.name === 'Empresarial') {
+                          const mensagem = `Olá! Gostaria de falar com um consultor sobre o plano *${plan.name}*.
+
+*Detalhes do Plano:*
+${plan.description}
+
+*Funcionalidades:*
+${plan.features.map(feature => `✓ ${feature}`).join('\n')}
+
+Por favor, entre em contato para mais informações.`;
+                          const mensagemEncoded = encodeURIComponent(mensagem);
+                          window.open(`https://wa.me/${whatsappNumber}?text=${mensagemEncoded}`, '_blank');
+                        } else {
+                          handleAssinarAgora(plan);
+                        }
+                      }}
                     >
                       {plan.name === 'Empresarial' ? 'Falar com consultor' : 'Assinar agora'}
                       <ArrowRight className="ml-2 w-4 h-4" />
@@ -261,7 +312,17 @@ const PricingSection: React.FC = () => {
               Nossa equipe está pronta para ajudar você a encontrar a solução ideal
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-green-secondary hover:bg-gray-100">
+              <Button 
+                size="lg" 
+                className="bg-white text-green-secondary hover:bg-gray-100"
+                onClick={() => {
+                  const mensagem = `Olá! Gostaria de falar com um consultor para escolher o plano ideal para minha empresa.
+
+Por favor, entre em contato para mais informações.`;
+                  const mensagemEncoded = encodeURIComponent(mensagem);
+                  window.open(`https://wa.me/${whatsappNumber}?text=${mensagemEncoded}`, '_blank');
+                }}
+              >
                 Falar com consultor
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

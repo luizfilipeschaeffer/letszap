@@ -41,29 +41,6 @@ const Footer: React.FC = () => {
               © 2025 LetsZap - Todos os direitos reservados.
             </motion.div>
 
-            {/* Social Links */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="flex space-x-4"
-            >
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-secondary transition-colors duration-200"
-                    aria-label={social.name}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                );
-              })}
-            </motion.div> */}
-
             {/* Legal Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}

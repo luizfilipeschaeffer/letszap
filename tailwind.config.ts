@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Paleta LetsZap - Regra 60-30-10
-        'green-primary': '#34D399',    // 60% - Verde suave (backgrounds, seções amplas)
-        'green-secondary': '#059669',  // 30% - Verde escuro (cabeçalhos, CTAs, elementos de destaque)
-        'green-accent': '#A7F3D0',     // 10% - Verde claro (destaques, hover states, badges)
-        'green-dark': '#047857',
-        'green-light': '#D1FAE5',
+        // Paleta LetsZap - Baseada no HTML de inspiração
+        'green-primary': '#2ECC71',    // Cor primária principal
+        'green-secondary': '#145A32',  // Verde escuro
+        'green-accent': '#25a25a',     // Hover states
+        'green-dark': '#145A32',
+        'green-light': '#F0FDF4',
         
         // Cores neutras
         background: "var(--background)",

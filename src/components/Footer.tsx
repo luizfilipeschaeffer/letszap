@@ -1,78 +1,73 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
-import { 
-  Linkedin, 
-  Youtube, 
-  Instagram, 
-  Facebook,
-  MessageCircle,
-  ArrowRight,
-  Mail,
-  Phone,
-  MapPin
-} from 'lucide-react';
+import Image from 'next/image';
 
-const Footer: React.FC = () => {
-  const whatsapp = 'https://wa.me/5548996846044';
-
-  const about = [
-    { name: 'Políticas de Privacidade', href: '#privacy' },
-  ];
-
+const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <Container>
-
-        {/* Bottom Footer */}
-        <div className="py-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            {/* Copyright */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-gray-400 text-sm"
-            >
-              © 2025 LetsZap - Todos os direitos reservados.
-            </motion.div>
-
-            {/* Legal Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex space-x-6 text-sm"
-            >
-              <a href="#privacy" className="text-gray-400 hover:text-green-primary transition-colors duration-200">
-                Políticas e Privacidade
-              </a>
-            </motion.div>
+    <footer className="bg-white pt-16 pb-8 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="col-span-1 md:col-span-1">
+            <span className="text-xl font-semibold tracking-tight text-gray-900 flex items-center gap-2 mb-4">
+              <Image
+                src="/logo.png"
+                alt="LetsZap Logo"
+                width={28}
+                height={28}
+                className="h-7 w-7"
+              />
+              <span className="whitespace-nowrap"><span className="text-[#2ECC71]">Lets</span>Zap</span>
+            </span>
+            <p className="text-sm text-gray-500">
+              Transformando conversas em relacionamentos.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Produto</h4>
+            <ul className="space-y-2">
+              <li><a href="#features" className="text-sm text-gray-500 hover:text-gray-900">Funcionalidades</a></li>
+              <li><a href="#plans" className="text-sm text-gray-500 hover:text-gray-900">Planos</a></li>
+              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900">API</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Suporte</h4>
+            <ul className="space-y-2">
+              <li><a href="/ajuda" className="text-sm text-gray-500 hover:text-gray-900">Central de Ajuda</a></li>
+              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900">Status</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Contato</h4>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2 text-sm text-gray-500">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:letter-linear"></iconify-icon> contato@letszap.com.br
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-500">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:phone-linear"></iconify-icon> +55 48 99684-6044
+              </li>
+            </ul>
           </div>
         </div>
-      </Container>
-
-      {/* WhatsApp Float Button */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 1 }}
-        className="fixed bottom-6 right-6 z-50"
-      >
-        <a
-          href={whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-14 h-14 bg-green-secondary rounded-full flex items-center justify-center shadow-lg hover:bg-green-dark transition-colors duration-200 group"
-        >
-          <MessageCircle className="w-7 h-7 text-white group-hover:scale-110 transition-transform" />
-        </a>
-      </motion.div>
+        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-gray-400">
+            © 2023 LetsZap. Todos os direitos reservados.
+          </p>
+          <div className="flex space-x-6">
+            <a href="#" className="text-gray-400 hover:text-gray-500">
+              {/* @ts-ignore */}
+                <iconify-icon icon="solar:camera-linear" width="20"></iconify-icon>
+            </a>
+            <a href="#" className="text-gray-400 hover:text-gray-500">
+              {/* @ts-ignore */}
+                <iconify-icon icon="brandico:facebook-rect" width="18"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

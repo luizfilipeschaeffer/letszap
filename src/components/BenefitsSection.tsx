@@ -1,137 +1,58 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/ui/Container';
-import { Card, CardContent } from '@/components/ui/Card';
-import { 
-  Users, 
-  BarChart3, 
-  MessageSquare, 
-  Zap, 
-  Shield,
-  CheckCircle
-} from 'lucide-react';
 
-const BenefitsSection: React.FC = () => {
-  const benefits = [
-    {
-      icon: Users,
-      title: 'Atendimento humanizado',
-      description: 'Mantenha o toque humano em cada conversa com seus clientes',
-      color: 'from-green-primary to-green-secondary'
-    },
-    {
-      icon: BarChart3,
-      title: 'Controle total de mensagens e filas',
-      description: 'Gerencie todas as conversas em um painel centralizado',
-      color: 'from-green-secondary to-green-dark'
-    },
-    {
-      icon: MessageSquare,
-      title: 'Relatórios e métricas em tempo real',
-      description: 'Acompanhe o desempenho da sua equipe com dados precisos',
-      color: 'from-green-accent to-green-primary'
-    },
-    {
-      icon: Users,
-      title: 'Conexão multiagente',
-      description: 'Distribua conversas entre sua equipe de forma inteligente',
-      color: 'from-green-dark to-green-secondary'
-    },
-    {
-      icon: Zap,
-      title: 'Automação de respostas',
-      description: 'Responda automaticamente às perguntas mais comuns',
-      color: 'from-green-primary to-green-accent'
-    },
-    {
-      icon: Shield,
-      title: 'Segurança e confiabilidade',
-      description: 'Proteja os dados dos seus clientes com criptografia avançada',
-      color: 'from-green-secondary to-green-primary'
-    }
-  ];
-
+const BenefitsSection = () => {
   return (
     <section className="py-20 bg-white">
-      <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
             Pronto para transformar o seu atendimento?
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Descubra como nossa plataforma pode revolucionar a forma como você atende seus clientes
+          <p className="mt-4 text-lg text-gray-500">
+            Ferramentas essenciais para escalar sua operação sem perder a qualidade.
           </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
-            return (
-              <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card hover className="h-full">
-                  <CardContent className="p-8 text-center">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-full flex items-center justify-center mx-auto mb-6`}>
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-green-secondary to-green-dark rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Comece a transformar seu atendimento hoje!
-            </h3>
-            <p className="text-green-light mb-6 max-w-2xl mx-auto">
-              Junte-se a milhares de empresas que já confiam em nossa plataforma
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                className="bg-white text-green-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
-              >
-                Começar agora!
-              </button>
-              <button 
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-secondary transition-colors"
-                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
-              >
-                Testar gratuitamente
-              </button>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Card 1 */}
+          <div className="group p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/30 transition-all duration-300">
+            <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-6 text-[#145A32]">
+              {/* @ts-ignore */}
+              <iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon>
             </div>
+            <h3 className="text-xl font-medium text-gray-900 mb-3">Conexão Multiagente</h3>
+            <p className="text-gray-500 leading-relaxed text-sm">
+              Permita que múltiplos atendentes utilizem o mesmo número de WhatsApp simultaneamente, eliminando gargalos.
+            </p>
           </div>
-        </motion.div>
-      </Container>
+          
+          {/* Card 2 */}
+          <div className="group p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/30 transition-all duration-300">
+            <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-6 text-[#145A32]">
+              {/* @ts-ignore */}
+              <iconify-icon icon="solar:chart-linear" width="24" height="24"></iconify-icon>
+            </div>
+            <h3 className="text-xl font-medium text-gray-900 mb-3">Métricas em Tempo Real</h3>
+            <p className="text-gray-500 leading-relaxed text-sm">
+              Acompanhe o desempenho da equipe com relatórios detalhados de tempo de resposta e volume de mensagens.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="group p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/30 transition-all duration-300">
+            <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-6 text-[#145A32]">
+              {/* @ts-ignore */}
+              <iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon>
+            </div>
+            <h3 className="text-xl font-medium text-gray-900 mb-3">Automação de Respostas</h3>
+            <p className="text-gray-500 leading-relaxed text-sm">
+              Crie fluxos de conversa e respostas rápidas para agilizar o atendimento e reduzir o tempo de espera do cliente.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

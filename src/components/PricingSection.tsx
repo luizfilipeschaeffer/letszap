@@ -1,343 +1,140 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/ui/Container';
-import { Card, CardContent } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Check, Star, ArrowRight, Gift, Users } from 'lucide-react';
+import React from 'react';
 
-const PricingSection: React.FC = () => {
-  const [isAnnual, setIsAnnual] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const whatsappNumber = '5548996846044';
-
-  React.useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const plans = [
-    {
-      name: 'Individual',
-      price: { monthly: 149.90, annual: 1439.00 },
-      description: 'Perfeito para profissionais autônomos',
-      features: [
-        '1 usuário',
-        '1 número WhatsApp',
-        'Funcionalidades básicas'
-      ],
-      popular: false,
-      color: 'from-gray-100 to-gray-200'
-    },
-    {
-      name: 'Básico',
-      price: { monthly: 199.90, annual: 2199.90 },
-      description: 'Ideal para pequenas empresas',
-      features: [
-        '3 usuários',
-        '2 números WhatsApp',
-        'Acesso a relatórios',
-        'E muito mais'
-      ],
-      popular: false,
-      color: 'from-green-100 to-green-200'
-    },
-    {
-      name: 'Avançado',
-      price: { monthly: 289.90, annual: 2783.00 },
-      description: 'Para empresas em crescimento',
-      features: [
-        '5 usuários',
-        'Automação completa'
-      ],
-      popular: true,
-      color: 'from-green-secondary to-green-dark'
-    },
-    {
-      name: 'Empresarial',
-      price: null,
-      description: 'Solução completa para grandes empresas',
-      features: [
-        '10+ usuários',
-        'Suporte prioritário',
-        'API customizada'
-      ],
-      popular: false,
-      color: 'from-green-dark to-green-secondary'
-    }
-  ];
-
-  const handleAssinarAgora = (plan: {
-    name: string;
-    price: { monthly: number; annual: number } | null;
-    description: string;
-    features: string[];
-    popular: boolean;
-    color: string;
-  }) => {
-    const periodo = isAnnual ? 'ano' : 'mês';
-    const preco = plan.price 
-      ? `R$ ${isAnnual ? plan.price.annual.toFixed(2) : plan.price.monthly.toFixed(2)}/${periodo}`
-      : 'Sob consulta';
-    
-    const featuresText = plan.features.map(feature => `✓ ${feature}`).join('\n');
-    
-    const mensagem = `Olá! Gostaria de assinar o plano *${plan.name}*.
-
-*Detalhes do Plano:*
-${plan.description}
-
-*Preço:* ${preco}
-
-*Funcionalidades:*
-${featuresText}
-
-Por favor, entre em contato para finalizar a assinatura.`;
-
-    const mensagemEncoded = encodeURIComponent(mensagem);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${mensagemEncoded}`;
-    
-    window.open(whatsappUrl, '_blank');
-  };
-
+const PricingSection = () => {
   return (
-    <section id="pricing" className="py-20 bg-white">
-      <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Planos e Preços
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Escolha o plano ideal para sua empresa e comece a transformar seu atendimento hoje
-          </p>
-
-          {/* Billing Toggle */}
-          <div className="flex items-center justify-center space-x-4 mb-8">
-            <span className={`text-sm font-medium ${!isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
-              Mensal
-            </span>
-            <button
-              onClick={() => setIsAnnual(!isAnnual)}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                isAnnual ? 'bg-green-secondary' : 'bg-gray-300'
-              }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isAnnual ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
-            </button>
-            <span className={`text-sm font-medium ${isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
-              Anual
-            </span>
-            {isAnnual && (
-              <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
-                Economize 20%
-              </span>
-            )}
-          </div>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                  <div className="bg-green-secondary text-white px-4 py-1 rounded-full text-sm font-medium flex items-center">
-                    <Star className="w-4 h-4 mr-1" />
-                    Mais Popular
-                  </div>
-                </div>
-              )}
-              
-              <Card className={`h-full ${plan.popular ? 'ring-2 ring-green-secondary shadow-xl' : ''}`}>
-                <CardContent className="p-8">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {plan.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {plan.description}
-                    </p>
-                    <div className="mb-4">
-                      {plan.price ? (
-                        <>
-                          <span className="text-4xl font-bold text-gray-900">
-                            R$ {isAnnual ? plan.price.annual.toFixed(2) : plan.price.monthly.toFixed(2)}
-                          </span>
-                          <span className="text-gray-600">
-                            /{isAnnual ? 'ano' : 'mês'}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="text-2xl font-bold text-gray-900">
-                          Entrar em Contato
-                        </span>
-                      )}
-                    </div>
-                    {isAnnual && plan.price && (
-                      <p className="text-sm text-green-600 font-medium">
-                        Economize R$ {((plan.price.monthly * 12) - plan.price.annual).toFixed(2)}/ano
-                      </p>
-                    )}
-                  </div>
-
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-gray-700">
-                        <Check className="w-4 h-4 text-green-secondary mr-3 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="space-y-3">
-                    <Button 
-                      className={`w-full ${
-                        plan.popular 
-                          ? 'bg-green-secondary hover:bg-green-dark' 
-                          : 'bg-gray-900 hover:bg-gray-800'
-                      }`}
-                      onClick={() => {
-                        if (plan.name === 'Empresarial') {
-                          const mensagem = `Olá! Gostaria de falar com um consultor sobre o plano *${plan.name}*.
-
-*Detalhes do Plano:*
-${plan.description}
-
-*Funcionalidades:*
-${plan.features.map(feature => `✓ ${feature}`).join('\n')}
-
-Por favor, entre em contato para mais informações.`;
-                          const mensagemEncoded = encodeURIComponent(mensagem);
-                          window.open(`https://wa.me/${whatsappNumber}?text=${mensagemEncoded}`, '_blank');
-                        } else {
-                          handleAssinarAgora(plan);
-                        }
-                      }}
-                    >
-                      {plan.name === 'Empresarial' ? 'Falar com consultor' : 'Assinar agora'}
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full"
-                      onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
-                    >
-                      Testar gratuitamente
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+    <section id="plans" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900">Planos e Preços</h2>
+          <p className="mt-4 text-gray-500">Escolha o plano ideal para o tamanho do seu negócio.</p>
         </div>
 
-        {/* Seção de Desconto por Indicação */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 md:p-12 border-2 border-green-200">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-shrink-0">
-                <div className="bg-green-secondary rounded-full p-6 w-20 h-20 flex items-center justify-center">
-                  <Gift className="w-10 h-10 text-white" />
-                </div>
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 flex items-center justify-center md:justify-start gap-2">
-                  <Users className="w-6 h-6 text-green-secondary" />
-                  Programa de Indicação
-                </h3>
-                <p className="text-lg text-gray-700 mb-4">
-                  Indique um amigo ou empresa e ganhe desconto especial!
-                </p>
-                <div className="bg-white rounded-lg p-4 mb-4 border-l-4 border-green-secondary">
-                  <p className="text-sm text-gray-600 font-medium">
-                    <span className="text-green-secondary font-bold">Importante:</span> O desconto será aplicado apenas quando o contato indicado se tornar um cliente assinante.
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                  <Button 
-                    size="lg" 
-                    className="bg-green-secondary hover:bg-green-dark text-white"
-                  >
-                    Indicar alguém
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-green-secondary text-green-secondary hover:bg-green-secondary hover:text-white"
-                  >
-                    Saiba mais
-                  </Button>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          
+          {/* Individual Plan */}
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col">
+            <h3 className="text-lg font-medium text-gray-900">Individual</h3>
+            <p className="text-sm text-gray-500 mt-2">Para profissionais liberais.</p>
+            <div className="my-6">
+              <span className="text-3xl font-semibold text-gray-900">R$149,90</span>
+              <span className="text-gray-500">/mês</span>
             </div>
+            <ul className="space-y-3 mb-8 flex-1">
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> 1 usuário
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> 1 número
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> Funcionalidades básicas
+              </li>
+            </ul>
+            <a 
+              href="https://wa.me/5548996846044?text=Olá,%20tenho%20interesse%20no%20plano%20Individual" 
+              className="w-full block text-center px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:border-gray-300 hover:text-gray-900 transition-colors"
+            >
+              Assinar agora
+            </a>
           </div>
-        </motion.div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-green-secondary to-green-dark rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Ainda tem dúvidas sobre qual plano escolher?
-            </h3>
-            <p className="text-green-light mb-6 max-w-2xl mx-auto">
-              Nossa equipe está pronta para ajudar você a encontrar a solução ideal
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-white text-green-secondary hover:bg-gray-100"
-                onClick={() => {
-                  const mensagem = `Olá! Gostaria de falar com um consultor para escolher o plano ideal para minha empresa.
-
-Por favor, entre em contato para mais informações.`;
-                  const mensagemEncoded = encodeURIComponent(mensagem);
-                  window.open(`https://wa.me/${whatsappNumber}?text=${mensagemEncoded}`, '_blank');
-                }}
-              >
-                Falar com consultor
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white text-white hover:bg-white hover:text-green-secondary"
-                onClick={() => window.open('https://portal.letszap.com.br/signup', '_blank')}
-              >
-                Testar gratuitamente
-              </Button>
+          {/* Basic Plan */}
+          <div className="bg-white rounded-xl border-2 border-[#2ECC71] shadow-md p-6 flex flex-col relative transform scale-105 md:scale-100 lg:scale-105 z-10">
+            <div className="absolute top-0 right-0 bg-[#2ECC71] text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
+            <h3 className="text-lg font-medium text-gray-900">Básico</h3>
+            <p className="text-sm text-gray-500 mt-2">Para pequenas equipes.</p>
+            <div className="my-6">
+              <span className="text-3xl font-semibold text-gray-900">R$199,90</span>
+              <span className="text-gray-500">/mês</span>
             </div>
+            <ul className="space-y-3 mb-8 flex-1">
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> 3 usuários
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> 1 número
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> Acesso a relatórios
+              </li>
+            </ul>
+            <a 
+              href="https://portal.letszap.com.br/signup" 
+              className="w-full block text-center px-4 py-2 bg-[#2ECC71] rounded-lg text-sm font-medium text-white hover:bg-[#25a25a] transition-colors shadow-sm"
+            >
+              Testar gratuitamente
+            </a>
           </div>
-        </motion.div>
-      </Container>
+
+          {/* Advanced Plan */}
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col">
+            <h3 className="text-lg font-medium text-gray-900">Avançado</h3>
+            <p className="text-sm text-gray-500 mt-2">Para empresas em crescimento.</p>
+            <div className="my-6">
+              <span className="text-3xl font-semibold text-gray-900">R$289,90</span>
+              <span className="text-gray-500">/mês</span>
+            </div>
+            <ul className="space-y-3 mb-8 flex-1">
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> 5 usuários
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> Automação completa
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> Múltiplas filas
+              </li>
+            </ul>
+            <a 
+              href="https://wa.me/5548996846044?text=Olá,%20tenho%20interesse%20no%20plano%20Avançado" 
+              className="w-full block text-center px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:border-gray-300 hover:text-gray-900 transition-colors"
+            >
+              Assinar agora
+            </a>
+          </div>
+
+          {/* Enterprise Plan */}
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col">
+            <h3 className="text-lg font-medium text-gray-900">Empresarial</h3>
+            <p className="text-sm text-gray-500 mt-2">Operações complexas.</p>
+            <div className="my-6">
+              <span className="text-2xl font-semibold text-gray-900">Sob Consulta</span>
+            </div>
+            <ul className="space-y-3 mb-8 flex-1">
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> 10+ usuários
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> Suporte prioritário
+              </li>
+              <li className="flex items-center gap-2 text-sm text-gray-600">
+                {/* @ts-ignore */}
+                <iconify-icon icon="solar:check-circle-linear" className="text-[#2ECC71]"></iconify-icon> API Dedicada
+              </li>
+            </ul>
+            <a 
+              href="https://wa.me/5548996846044?text=Olá,%20tenho%20interesse%20no%20plano%20Empresarial" 
+              className="w-full block text-center px-4 py-2 border border-gray-900 bg-gray-900 rounded-lg text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+            >
+              Entrar em Contato
+            </a>
+          </div>
+
+        </div>
+      </div>
     </section>
   );
 };
